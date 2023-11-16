@@ -1,6 +1,7 @@
 package our.thinnm00mxytp3.wms.entities;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GeneratorType;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -10,17 +11,37 @@ import java.util.Date;
 
 @MappedSuperclass
 public class BaseEntity implements Serializable {
+    /**
+     * serializable: cơ chế để ghi trạng thái của một đối tượng vào một byte stream.
+     * Nó chủ yếu được sử dụng trong các công nghệ Hibernate, RMI, JPA, EJB và JMS.
+     * <p>
+     * deserialiable:ngược lại với serializable
+     *
+     */
     private static final long serialVersionUID = 1L;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="created_at")
-    @CreationTimestamp
-    private Date createdAt; // determine that time when entity created
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private int id;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="updated_at")
+    @Column(name="create_time")
+    @CreationTimestamp
+    private Date createTime; // determine that time when entity created
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="updated_time")
     @UpdateTimestamp
-    private Date updatedAt; // determine that time when entity created
+    private Date updateTime; // determine that time when entity created
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     // Constructors, getters, and setters
     public String getDateFormatVN(Date date) {
@@ -41,28 +62,28 @@ public class BaseEntity implements Serializable {
         }
     }
 
-    public Date getUpdatedAt() {
-        return this.updatedAt;
+    public Date getUpdateTime() {
+        return this.updateTime;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public Date getCreatedAt() {
-        return this.createdAt;
+    public Date getCreateTime() {
+        return this.createTime;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public String getCreatedAtFormatVN() {
-        return this.getDatetimeFormatVN(createdAt);
+        return this.getDatetimeFormatVN(createTime);
     }
 
     public String getUpdatedAtFormatVN() {
-        return this.getDatetimeFormatVN(updatedAt);
+        return this.getDatetimeFormatVN(updateTime);
     }
 
 }
