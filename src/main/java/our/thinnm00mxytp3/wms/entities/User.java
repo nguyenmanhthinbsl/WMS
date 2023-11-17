@@ -40,4 +40,5 @@ public class User extends BaseEntity{
     private int verifyFailCount; // check if verify fail in time
     @Column(name = "last_login_datetime")
     private Date lastLoginDateTime;
+
 }

@@ -1,7 +1,6 @@
 package our.thinnm00mxytp3.wms.entities;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GeneratorType;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -21,9 +20,8 @@ public class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false, nullable = false)
-    private int id;
+    @Column(name = "id", updatable = false, nullable = false)
+    private String id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="create_time")
@@ -35,11 +33,11 @@ public class BaseEntity implements Serializable {
     @UpdateTimestamp
     private Date updateTime; // determine that time when entity created
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
