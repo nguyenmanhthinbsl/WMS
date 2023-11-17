@@ -1,9 +1,9 @@
 package our.thinnm00mxytp3.wms.entities;
 
+import org.hibernate.annotations.GenericGenerator;
 import our.thinnm00mxytp3.wms.enums.WarehouseStatusEnum;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -11,6 +11,12 @@ import java.util.UUID;
 public class Warehouse extends BaseEntity{
 
     private static final long serialVersionUID = 1L;
+
+    @Id()
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id",columnDefinition = "BINARY(12)")
+    private UUID id;
     private String warehouseName;
     private String warehouseAddress;
     private String warehouseContact;

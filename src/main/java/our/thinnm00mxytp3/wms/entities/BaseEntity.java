@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 @MappedSuperclass
 public class BaseEntity implements Serializable {
@@ -20,11 +21,6 @@ public class BaseEntity implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false, nullable = false)
-    private int id;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="create_time")
     @CreationTimestamp
@@ -35,12 +31,26 @@ public class BaseEntity implements Serializable {
     @UpdateTimestamp
     private Date updateTime; // determine that time when entity created
 
-    public int getId() {
-        return id;
+    @Column(name = "is_delete")
+    private boolean isDelete;
+
+    @Column(name = "deleteBy")
+    private UUID deteleBy;
+
+    public boolean isDelete() {
+        return isDelete;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
+
+    public UUID getDeteleBy() {
+        return deteleBy;
+    }
+
+    public void setDeteleBy(UUID deteleBy) {
+        this.deteleBy = deteleBy;
     }
 
     // Constructors, getters, and setters
