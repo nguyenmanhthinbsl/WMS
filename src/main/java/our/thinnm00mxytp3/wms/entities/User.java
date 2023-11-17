@@ -24,8 +24,6 @@ public class User extends BaseEntity{
     private String facebookUID;
     @Column(name = "phone_uid")
     private String phoneUID;
-    @Column(name = "ipaddress")
-    private String ipAddress;
     @Column(name = "email")
     private String email;
     @Column(name = "username")
