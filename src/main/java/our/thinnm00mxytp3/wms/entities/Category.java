@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "category")
-public class Category {
+public class Category extends BaseEntity{
     @Column(name = "name")
     private String name;
     @Column(name = "code")
@@ -17,4 +17,11 @@ public class Category {
     private String description;
     @Column(name = "status")
     private CategoryStatusEnum status;
+
+//    public Category(String name, String code, String description, CategoryStatusEnum status) {
+//        this.name = name;
+//        this.code = code;
+//        this.description = description;
+//        this.status = status;
+//    }
 }

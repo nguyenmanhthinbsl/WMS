@@ -5,7 +5,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_role_mapper")
-public class UserRoleMapper {
+public class UserRoleMapper extends BaseEntity{
     private int userId;
     private int roleId;
 
